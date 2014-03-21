@@ -1,0 +1,13 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use v5.14;
+use File::Trash::FreeDesktop 0.11;
+
+my $trash = File::Trash::FreeDesktop->new;
+$trash->empty;
+
+# PODNAME: trash_empty
+# ABSTRACT: command to empty the trash
+# VERSION

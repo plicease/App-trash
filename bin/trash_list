@@ -1,0 +1,25 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use v5.14;
+use File::Trash::FreeDesktop 0.11;
+use Number::Bytes::Human     0.09 qw( format_bytes);
+use File::Spec               3.33;
+
+my $trash = File::Trash::FreeDesktop->new;
+
+foreach my $dir ($trash->list_trashes)
+{
+  say "[$dir\]";
+  foreach my $entry ($trash->list_contents($dir))
+  {
+    my $size = -s File::Spec->catfile($entry->{trash_dir}, 'files', $entry->{entry});
+    printf("%-4s ", format_bytes($size));
+    say $entry->{entry};
+  }
+}
+
+# PODNAME: trash_list
+# ABSTRACT: command to list the contents of the trash
+# VERSION
