@@ -14,7 +14,7 @@ foreach my $dir ($trash->list_trashes)
   say "[$dir\]";
   foreach my $entry ($trash->list_contents($dir))
   {
-    my $size = -s File::Spec->catfile($entry->{trash_dir}, 'files', $entry->{entry});
+    my $size = size(File::Spec->catdir($entry->{trash_dir}, 'files'), $entry->{entry});
     printf("%-4s ", format_bytes($size));
     say $entry->{entry};
   }
@@ -23,3 +23,30 @@ foreach my $dir ($trash->list_trashes)
 # PODNAME: trash_list
 # ABSTRACT: command to list the contents of the trash
 # VERSION
+
+sub size
+{
+  my($dir, $fn) = @_;
+  if(-d File::Spec->catdir($dir, $fn))
+  {
+    $fn = File::Spec->catdir($dir, $fn);
+    my $size = -s $fn;
+    my $dh;
+    opendir $dh, $fn;
+    my @list = grep !/^\.\.?$/, readdir $dh;
+    closedir $dh;
+    foreach my $file (@list)
+    {
+      $size += size($fn, $file);
+    }
+    return $size;
+  }
+  elsif(-e File::Spec->catfile($dir, $fn))
+  {
+    return -s File::Spec->catfile($dir, $fn);
+  }
+  else
+  {
+    return 0;
+  }
+}
