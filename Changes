@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.02      2014-05-13 07:54:47 -0400
   - correctly determine size of directories in tash
 
 0.01      2014-03-21 18:19:35 -0400
