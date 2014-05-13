@@ -9,6 +9,8 @@ use File::Spec               3.33;
 
 my $trash = File::Trash::FreeDesktop->new;
 
+my $total = 0;
+
 foreach my $dir ($trash->list_trashes)
 {
   say "[$dir\]";
@@ -17,8 +19,11 @@ foreach my $dir ($trash->list_trashes)
     my $size = size(File::Spec->catdir($entry->{trash_dir}, 'files'), $entry->{entry});
     printf("%-4s ", format_bytes($size));
     say $entry->{entry};
+    $total += $size;
   }
 }
+
+print "\ntotal = ", format_bytes($total), "\n";
 
 # PODNAME: trash_list
 # ABSTRACT: command to list the contents of the trash
