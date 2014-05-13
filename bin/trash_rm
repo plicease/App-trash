@@ -5,6 +5,10 @@ use warnings;
 use v5.14;
 use File::Trash::FreeDesktop 0.11;
 
+# PODNAME: trash_rm
+# ABSTRACT: move files to the trash
+# VERSION
+
 my $trash = File::Trash::FreeDesktop->new;
 
 foreach my $filename (@ARGV)
