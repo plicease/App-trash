@@ -2,6 +2,10 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+0.03      2014-05-13 08:11:01 -0400
+  - include the total size in trash_list command
+  - add trash_rm command
+
 0.02      2014-05-13 07:54:47 -0400
   - correctly determine size of directories in tash
 
