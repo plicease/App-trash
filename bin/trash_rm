@@ -1,0 +1,21 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use v5.14;
+use File::Trash::FreeDesktop 0.11;
+
+my $trash = File::Trash::FreeDesktop->new;
+
+foreach my $filename (@ARGV)
+{
+  if(-e $filename)
+  {
+    $trash->trash($filename);
+  }
+  else
+  {
+    warn "no such file $filename\n";
+  }
+}
+
