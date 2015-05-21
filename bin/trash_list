@@ -2,7 +2,7 @@
 
 use strict;
 use warnings;
-use v5.14;
+use 5.014;
 use File::Trash::FreeDesktop 0.11;
 use Number::Bytes::Human     0.09 qw( format_bytes);
 use File::Spec               3.33;
